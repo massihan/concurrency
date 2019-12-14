@@ -1,0 +1,5 @@
+1.sleep is the method of Thread, but the wait is Object
+2.sleep will not release the object monitor(LOCK), but the wait will release object monitor
+and add to the Object monitor waiting queue.
+3.use sleep not depend on the monitor,but wait need
+4.the sleep method not need be wakeup ,but wait need.
