@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
  */
 public class BigCollectionMock {
     public static List<Integer> mock() {
-        int[] ints = IntStream.rangeClosed(1, 1000 * 10 * 10).toArray();
+        int[] ints = IntStream.rangeClosed(1, 1000 * 10).toArray();
         return Arrays.stream(ints).boxed().collect(Collectors.toList());
     }
 
