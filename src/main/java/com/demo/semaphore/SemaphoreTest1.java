@@ -1,19 +1,15 @@
-/*
- * All rights Reserved, Designed By baowei
- *
- * 注意：本内容仅限于内部传阅，禁止外泄以及用于其他的商业目的
- */
 package com.demo.semaphore;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
+
 /**
  * @author yan.zhang
  * @date 2020/9/26 18:54
  */
-public class SemaphoreTest {
+public class SemaphoreTest1 {
     private static final int THREAD_COUNT = 30;
 
     private static ExecutorService threadPool = Executors.newFixedThreadPool(THREAD_COUNT);
