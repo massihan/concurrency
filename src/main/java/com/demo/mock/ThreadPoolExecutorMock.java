@@ -27,7 +27,11 @@ public class ThreadPoolExecutorMock {
             public Thread newThread(Runnable r) {
                 int index = atomicInteger.getAndIncrement();
                 System.out.println("ThreadPoolExecutorMock: create no " + index + " thread");
-                return new Thread(r, "mock-thread-" + index);
+
+                Thread thread = new Thread(r, "mock-thread-" + index);
+                //设置线程池的创建的线程为守护线程，main退出 程序结束
+                thread.setDaemon(true);
+                return thread;
             }
         }, new ThreadPoolExecutor.CallerRunsPolicy());
 
