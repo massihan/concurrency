@@ -5,6 +5,10 @@
  */
 package com.demo.juc;
 
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * @author yan.zhang
  * @date 2020/11/9 22:42
@@ -13,7 +17,40 @@ public class LockSupportDemo1 {
 
     static Object LOCK = new Object();
 
+    static Lock lock = new ReentrantLock();
+    static Condition condition = lock.newCondition();
+
     public static void main(String[] args) {
+//        synchronizedWaitNotify();
+
+        new Thread(() -> {
+            lock.lock();
+            try {
+                System.out.println(Thread.currentThread().getName() + "\t" + "-----come in-----");
+                try {
+                    condition.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread().getName() + "\t" + "-----被唤醒-----");
+            } finally {
+                lock.unlock();
+            }
+        }, "A").start();
+
+
+        new Thread(() -> {
+            lock.lock();
+            try {
+                condition.signal();
+                System.out.println(Thread.currentThread().getName() + "\t" + "-----通知-----");
+            } finally {
+                lock.unlock();
+            }
+        }, "B").start();
+    }
+
+    private static void synchronizedWaitNotify() {
         new Thread(() -> {
             synchronized (LOCK) {
                 System.out.println(Thread.currentThread().getName() + "\t" + "-----come in-----");
