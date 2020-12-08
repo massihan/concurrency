@@ -25,13 +25,13 @@ public class LockSupportDemo3 {
      * 1）线程必须获得并持有锁，必须在同步代码块中（synchronized或lock）中
      * 2）必须要先等待后唤醒，线程才能够被唤醒
      */
-    static Object LOCK = new Object();
+    static final Object LOCK = new Object();
 
     static Lock lock = new ReentrantLock();
     static Condition condition = lock.newCondition();
 
     public static void main(String[] args) {
-        synchronizedWaitNotify();
+//        synchronizedWaitNotify();
 
         /**
          *

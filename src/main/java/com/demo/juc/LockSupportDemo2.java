@@ -25,7 +25,7 @@ public class LockSupportDemo2 {
 
 
         /**
-         *   condition.await();和condition.signal()一样必须在同步代码块中使用
+         * condition.await();和condition.signal()一样必须在同步代码块中使用
          */
         synchronizedAwaitSignal();
     }
