@@ -3,6 +3,7 @@ package com.demo.semaphore;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -33,9 +34,13 @@ public class SemaphoreTest1 {
                 public void run() {
                     try {
                         s.acquire();
+                        //每个业务线程执行2s
+                        TimeUnit.SECONDS.sleep(2);
+
                         System.out.println("save data");
+                    } catch (InterruptedException ignored) {
+                    } finally {
                         s.release();
-                    } catch (InterruptedException e) {
                     }
                 }
             });

@@ -25,6 +25,8 @@ public class TestThreadLocal03 {
 
         @Override
         public void run() {
+            Thread thread = Thread.currentThread();
+            System.out.println(thread.getName());
             System.out.println(Thread.currentThread().getName() + "-->" + threadLocal.get());//Thread-0-->1
         }
     }
